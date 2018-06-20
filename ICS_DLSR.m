@@ -42,6 +42,7 @@ for iter = 1:max_iter
     % ---------- C1 ------------ %
     Lq = F-Q*X;
     C1 = C1 + miu*Lq; 
+    miu = min(rho*miu,max_miu);
    
     obj(iter) = 0.5*norm(Y+E-Q*X,'fro').^2+lambda3*0.5*norm(Q,'fro')^2+lambda1*obj_F+lambda2*sum(sqrt(sum(E.^2,2)));
     if iter > 3 && abs(obj(iter)-obj(iter-1)) < 1e-7

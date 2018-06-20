@@ -9,27 +9,10 @@ clear all
 clc
 clear memory;
 
-% % name = 'YaleB_32x32'
-% % opts.lambda1 = 1e-2;
-% % opts.lambda2 = 2e-1;
-% % opts.lambda3 = 1e-2;
-% % sele_num = 10;
-
-
-name = 'LFW_1024_jerry';
-opts.lambda1 = 1e3;
-opts.lambda2 = 1e0;
-opts.lambda3 = 5e-2;
-sele_num = 8;
-
-% % name = 'COIL20'
-% % opts.lambda1 = 1e-4;
-% % opts.lambda2 = 1e-3;
-% % opts.lambda3 = 1e-2;
-% % sele_num = 25;
-
+name = 'YaleB_32x32'
 load (name);
 fea = double(fea);
+sele_num = 10;
 nnClass = length(unique(gnd));  % The number of classes;
 num_Class = [];
 for i = 1:nnClass
@@ -59,6 +42,9 @@ Y = double(Y)';
 
 opts.miu = 1e-8;
 opts.rho = 1.01;
+opts.lambda1 = 1e-2;
+opts.lambda2 = 5e-1;
+opts.lambda3 = 1e-2;
 opts.nnClass = nnClass;
 opts.maxIter = 30;
 X = Train_Ma;
