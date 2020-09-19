@@ -1,9 +1,10 @@
 % code is written by Jie Wen
-% If any problems, please contact: wenjie@hrbeu.edu.cn
+% If any problems, please contact: jiewen_pr@126.com
 % Please cite the reference:
 % Jie Wen, Yong Xu, Zuoyong Li, Zhongli Ma, Yuanrong Xu, 
 % Inter-class sparsity based discriminative least square regression [J],
 % Neural Networks, 2018, doi: 10.1016/j.neunet.2018.02.002.
+% Just tune the parameter opts.miu, opts.rho, opts.lambda1, opts.lambda2, opts.lambda3
 
 clear all
 clc
@@ -40,17 +41,16 @@ label = unique(Train_Lab);
 Y = bsxfun(@eq, Train_Lab, label');
 Y = double(Y)';
 
-opts.miu = 1e-8;
+opts.miu = 1e-2;
 opts.rho = 1.01;
 opts.lambda1 = 1e-2;
-opts.lambda2 = 5e-1;
+opts.lambda2 = 2e-1;
 opts.lambda3 = 1e-2;
 opts.nnClass = nnClass;
 opts.maxIter = 30;
 X = Train_Ma;
 
 [Q,E,obj] = ICS_DLSR(X,Y,Train_Lab,opts);
-% % figure;plot(obj);
 Train_Maa = Q*Train_Ma;
 Test_Maa  = Q*Test_Ma;
 Train_Maa = Train_Maa./repmat(sqrt(sum(Train_Maa.^2)),[size(Train_Maa,1) 1]);
